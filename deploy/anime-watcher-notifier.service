@@ -1,0 +1,15 @@
+[Unit]
+Description=Anime Watcher RSS episode notifier
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/anime-watcher
+ExecStart=/usr/bin/python3 /opt/anime-watcher/anime_watcher_notifier.py
+
+# If you use a virtualenv, replace the line above with:
+# ExecStart=/opt/anime-watcher/.venv/bin/python /opt/anime-watcher/anime_watcher_notifier.py
+
+[Install]
+WantedBy=multi-user.target

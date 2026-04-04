@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Anime Watcher RSS notifier every 15 minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=15min
+Unit=anime-watcher-notifier.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target

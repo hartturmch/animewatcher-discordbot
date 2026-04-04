@@ -1,0 +1,17 @@
+[Unit]
+Description=Anime Watcher Discord bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/anime-watcher
+ExecStart=/usr/bin/python3 /opt/anime-watcher/anime_watcher_bot.py
+Restart=always
+RestartSec=5
+
+# If you use a virtualenv, replace the line above with:
+# ExecStart=/opt/anime-watcher/.venv/bin/python /opt/anime-watcher/anime_watcher_bot.py
+
+[Install]
+WantedBy=multi-user.target
