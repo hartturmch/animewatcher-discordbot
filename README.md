@@ -11,13 +11,9 @@ Bot de Discord para acompanhar lancamentos de anime via AniList e avisar quando 
 
 ## Convide o bot
 
-Quer usar sem configurar nada?
-
 [Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
 
-Esse link abre a tela de autorizacao do Discord para voce escolher o servidor e adicionar o bot.
-
-## Colocar no seu servidor
+## Como usar
 
 [Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
 
