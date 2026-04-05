@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 from __future__ import annotations
 
 import asyncio
@@ -274,14 +274,14 @@ class WatchGroup(app_commands.Group):
     async def add(self, interaction: discord.Interaction, title: str) -> None:
         channel = interaction.channel
         if channel is None:
-            await interaction.response.send_message("Nao consegui identificar onde salvar essa watchlist.", ephemeral=True)
+            await interaction.response.send_message("NÃ£o consegui identificar onde salvar essa watchlist.", ephemeral=True)
             return
         subscription_key, context_channel_id, scope, owner_user_id, location_label = self.get_subscription_context(interaction)
 
         await interaction.response.defer(ephemeral=True)
         candidates = await asyncio.to_thread(search_anime, title)
         if not candidates:
-            await interaction.followup.send("Nao achei esse anime no AniList.", ephemeral=True)
+            await interaction.followup.send("NÃ£o achei esse anime no AniList.", ephemeral=True)
             return
 
         if len(candidates) == 1:
@@ -297,17 +297,17 @@ class WatchGroup(app_commands.Group):
             if added_user:
                 if created_media:
                     await interaction.followup.send(
-                        f"Adicionado: `{stored_title}`. Vou te avisar quando sair episodio novo {location_label}.",
+                        f"Adicionado: `{stored_title}`. Vou te avisar quando sair episÃ³dio novo {location_label}.",
                         ephemeral=True,
                     )
                 else:
                     await interaction.followup.send(
-                        f"Voce tambem foi inscrito em `{stored_title}` {location_label}.",
+                        f"VocÃª tambÃ©m foi inscrito em `{stored_title}` {location_label}.",
                         ephemeral=True,
                     )
                 return
 
-            await interaction.followup.send(f"Voce ja estava inscrito nesse anime {location_label}.", ephemeral=True)
+            await interaction.followup.send(f"VocÃª jÃ¡ estava inscrito nesse anime {location_label}.", ephemeral=True)
             return
 
         view = AnimeSelectView(self.bot, subscription_key, context_channel_id, scope, owner_user_id, interaction.user.id, candidates)
@@ -322,17 +322,17 @@ class WatchGroup(app_commands.Group):
                 parts.append(f"prox ep {media.next_episode_number}")
             lines.append(" | ".join(parts))
         await interaction.followup.send(
-            "Achei varias opcoes. Escolha uma abaixo:\n" + "\n".join(lines),
+            "Achei vÃ¡rias opÃ§Ãµes. Escolha uma abaixo:\n" + "\n".join(lines),
             ephemeral=True,
             view=view,
         )
 
-    @app_commands.command(name="remove", description="Remover sua inscricao de um anime")
-    @app_commands.describe(title="Titulo exibido em /watch list")
+    @app_commands.command(name="remove", description="Remover sua inscriÃ§Ã£o de um anime")
+    @app_commands.describe(title="TÃ­tulo exibido em /watch list")
     async def remove(self, interaction: discord.Interaction, title: str) -> None:
         channel = interaction.channel
         if channel is None:
-            await interaction.response.send_message("Nao consegui identificar de onde remover essa inscricao.", ephemeral=True)
+            await interaction.response.send_message("NÃ£o consegui identificar de onde remover essa inscriÃ§Ã£o.", ephemeral=True)
             return
         subscription_key, context_channel_id, scope, owner_user_id, location_label = self.get_subscription_context(interaction)
 
@@ -345,19 +345,19 @@ class WatchGroup(app_commands.Group):
             owner_user_id=owner_user_id,
         )
         if removed_title is None:
-            await interaction.response.send_message(f"Nao encontrei esse anime na watchlist {location_label}.", ephemeral=True)
+            await interaction.response.send_message(f"NÃ£o encontrei esse anime na watchlist {location_label}.", ephemeral=True)
             return
         if not removed_user:
-            await interaction.response.send_message(f"Voce nao estava inscrito nesse anime {location_label}.", ephemeral=True)
+            await interaction.response.send_message(f"VocÃª nÃ£o estava inscrito nesse anime {location_label}.", ephemeral=True)
             return
 
-        await interaction.response.send_message(f"Voce deixou de seguir: `{removed_title}`", ephemeral=True)
+        await interaction.response.send_message(f"VocÃª deixou de seguir: `{removed_title}`", ephemeral=True)
 
     @app_commands.command(name="list", description="Listar animes monitorados")
     async def list(self, interaction: discord.Interaction) -> None:
         channel = interaction.channel
         if channel is None:
-            await interaction.response.send_message("Nao consegui identificar qual watchlist mostrar.", ephemeral=True)
+            await interaction.response.send_message("NÃ£o consegui identificar qual watchlist mostrar.", ephemeral=True)
             return
         subscription_key, context_channel_id, scope, owner_user_id, location_label = self.get_subscription_context(interaction)
 
@@ -368,7 +368,7 @@ class WatchGroup(app_commands.Group):
             owner_user_id=owner_user_id,
         )
         if not media_entries:
-            await interaction.response.send_message(f"Ainda nao ha animes na watchlist {location_label}.", ephemeral=True)
+            await interaction.response.send_message(f"Ainda nÃ£o hÃ¡ animes na watchlist {location_label}.", ephemeral=True)
             return
 
         formatted = "\n".join(
@@ -381,7 +381,7 @@ class WatchGroup(app_commands.Group):
     async def clear(self, interaction: discord.Interaction) -> None:
         channel = interaction.channel
         if channel is None:
-            await interaction.response.send_message("Nao consegui identificar qual watchlist limpar.", ephemeral=True)
+            await interaction.response.send_message("NÃ£o consegui identificar qual watchlist limpar.", ephemeral=True)
             return
         subscription_key, context_channel_id, scope, owner_user_id, location_label = self.get_subscription_context(interaction)
 
@@ -397,7 +397,7 @@ class WatchGroup(app_commands.Group):
     async def check(self, interaction: discord.Interaction) -> None:
         channel = interaction.channel
         if channel is None:
-            await interaction.response.send_message("Nao consegui identificar qual watchlist consultar.", ephemeral=True)
+            await interaction.response.send_message("NÃ£o consegui identificar qual watchlist consultar.", ephemeral=True)
             return
         subscription_key, context_channel_id, scope, owner_user_id, location_label = self.get_subscription_context(interaction)
 
@@ -409,20 +409,20 @@ class WatchGroup(app_commands.Group):
             owner_user_id=owner_user_id,
         )
         if not media_entries:
-            await interaction.followup.send(f"Ainda nao ha animes na watchlist {location_label}.", ephemeral=True)
+            await interaction.followup.send(f"Ainda nÃ£o hÃ¡ animes na watchlist {location_label}.", ephemeral=True)
             return
 
         media_ids = [entry["media_id"] for entry in media_entries]
         results = await asyncio.to_thread(fetch_media_by_ids, media_ids)
         if not results:
-            await interaction.followup.send("Nao consegui falar com o AniList agora.", ephemeral=True)
+            await interaction.followup.send("NÃ£o consegui falar com o AniList agora.", ephemeral=True)
             return
 
         lines = []
         for media in results[:10]:
             episode = media.next_episode_number or "?"
             when = format_airing_timestamp(media.next_airing_at, self.bot.config.timezone_name)
-            lines.append(f"- {media.display_title} | prox. episodio {episode} | {when}")
+            lines.append(f"- {media.display_title} | prÃ³x. episÃ³dio {episode} | {when}")
 
         await interaction.followup.send(f"Estado atual {location_label}:\n" + "\n".join(lines), ephemeral=True)
 
@@ -503,7 +503,7 @@ class AnimeWatcherBot(discord.Client):
         description_lines = [f"Episodio liberado: {episode_number}{title_suffix}"]
         if media.next_episode_number is not None:
             description_lines.append(
-                f"Proximo episodio previsto: {media.next_episode_number} em {format_airing_timestamp(media.next_airing_at, self.config.timezone_name)}"
+                f"PrÃ³ximo episÃ³dio previsto: {media.next_episode_number} em {format_airing_timestamp(media.next_airing_at, self.config.timezone_name)}"
             )
 
         if watch_url:
@@ -512,7 +512,7 @@ class AnimeWatcherBot(discord.Client):
             description_lines.append(f"Pagina: {media.site_url}")
 
         embed = discord.Embed(
-            title=f"{media.display_title} - Episodio {episode_number}{title_suffix}",
+            title=f"{media.display_title} - EpisÃ³dio {episode_number}{title_suffix}",
             description="\n".join(description_lines),
             colour=discord.Colour.orange(),
         )
@@ -521,10 +521,10 @@ class AnimeWatcherBot(discord.Client):
 
         allowed_mentions = discord.AllowedMentions(users=True, roles=False, everyone=False)
         if scope == "dm":
-            await channel.send(content=f"Saiu episodio novo de {media.display_title}.", embed=embed)
+            await channel.send(content=f"Saiu episÃ³dio novo de {media.display_title}.", embed=embed)
             return
 
-        content = f"{mention_text} saiu episodio novo de {media.display_title}.".strip()
+        content = f"{mention_text} saiu episÃ³dio novo de {media.display_title}.".strip()
         await channel.send(content=content, embed=embed, allowed_mentions=allowed_mentions)
 
     async def resolve_delivery_target(self, subscription: dict) -> tuple[discord.abc.Messageable | None, str]:
@@ -641,7 +641,7 @@ def main() -> int:
     try:
         config = load_config(base_dir)
     except Exception as exc:
-        print(f"ERROR: {exc}")
+        print(f"ERRO: {exc}")
         return 1
 
     bot = AnimeWatcherBot(config)
@@ -687,18 +687,18 @@ class AnimeSelect(discord.ui.Select):
             discord.SelectOption(
                 label="Cancelar",
                 value="cancel",
-                description="Cancelar esta adicao",
+                description="Cancelar esta adiÃ§Ã£o",
             )
         )
         super().__init__(placeholder="Escolha o anime", min_values=1, max_values=1, options=options)
 
     async def callback(self, interaction: discord.Interaction) -> None:
         if interaction.user.id != self.user_id:
-            await interaction.response.send_message("So quem abriu a busca pode escolher uma opcao.", ephemeral=True)
+            await interaction.response.send_message("SÃ³ quem abriu a busca pode escolher uma opÃ§Ã£o.", ephemeral=True)
             return
 
         if self.values[0] == "cancel":
-            await interaction.response.edit_message(content="Adicao cancelada.", view=None)
+            await interaction.response.edit_message(content="AdiÃ§Ã£o cancelada.", view=None)
             return
 
         media = self.candidates[self.values[0]]
@@ -714,14 +714,14 @@ class AnimeSelect(discord.ui.Select):
             if created_media:
                 details = f"{media.season_label} | {media.status or 'desconhecido'}"
                 location_label = "nesta DM" if self.scope == "dm" else "neste canal"
-                message = f"Adicionado: `{stored_title}` ({details}). Vou te avisar quando sair episodio novo {location_label}."
+                message = f"Adicionado: `{stored_title}` ({details}). Vou te avisar quando sair episÃ³dio novo {location_label}."
             else:
                 details = f"{media.season_label} | {media.status or 'desconhecido'}"
                 location_label = "nesta DM" if self.scope == "dm" else "neste canal"
-                message = f"Voce tambem foi inscrito em `{stored_title}` ({details}) {location_label}."
+                message = f"VocÃª tambÃ©m foi inscrito em `{stored_title}` ({details}) {location_label}."
         else:
             location_label = "nesta DM" if self.scope == "dm" else "neste canal"
-            message = f"Voce ja estava inscrito nesse anime {location_label}."
+            message = f"VocÃª jÃ¡ estava inscrito nesse anime {location_label}."
 
         await interaction.response.edit_message(content=message, view=None)
 
@@ -743,3 +743,4 @@ class AnimeSelectView(discord.ui.View):
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
