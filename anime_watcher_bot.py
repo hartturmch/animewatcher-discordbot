@@ -322,7 +322,7 @@ class WatchGroup(app_commands.Group):
                 parts.append(f"prox ep {media.next_episode_number}")
             lines.append(" | ".join(parts))
         await interaction.followup.send(
-            "Achei varias opcoes. Escolhe uma abaixo:\n" + "\n".join(lines),
+            "Achei varias opcoes. Escolha uma abaixo:\n" + "\n".join(lines),
             ephemeral=True,
             view=view,
         )
