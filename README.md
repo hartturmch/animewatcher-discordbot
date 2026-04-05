@@ -9,10 +9,6 @@ Bot de Discord para acompanhar lancamentos de anime via AniList e avisar quando 
 [![Docker Ready](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![AniList](https://img.shields.io/badge/Data-AniList-02A9FF)](https://anilist.gitbook.io/anilist-apiv2-docs/)
 
-## Convide o bot
-
-[Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
-
 ## Como usar
 
 [Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
