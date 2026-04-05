@@ -1,11 +1,13 @@
 # Anime Watcher
 
-Bot de Discord para VPS Ubuntu que:
+Bot de Discord para acompanhar lancamentos de anime via AniList.
 
-- consulta o AniList para agenda de episodios;
-- permite escolher os animes diretamente no Discord com slash commands;
-- guarda watchlists por canal e por DM;
-- envia aviso no canal ou na DM quando sai episodio novo, mencionando quem pediu aquele anime.
+Ele:
+
+- consulta o AniList para ver agenda e proximo episodio;
+- deixa voce escolher o anime direto no Discord com slash commands;
+- guarda watchlists separadas por canal e por DM;
+- manda aviso no canal ou na DM quando sair episodio novo.
 
 Fonte atual:
 
@@ -13,13 +15,13 @@ Fonte atual:
 
 ## Comandos do bot
 
-- `/watch add <titulo>`: procura o anime no AniList e adiciona o melhor resultado neste contexto
-- `/watch remove <titulo>`: remove um anime deste contexto
-- `/watch list`: lista os animes deste contexto
-- `/watch clear`: limpa a watchlist deste contexto
-- `/watch check`: mostra a previsao atual de proximos episodios deste contexto
+- `/watch add <titulo>`: procura o anime no AniList e adiciona na watchlist atual
+- `/watch remove <titulo>`: remove um anime da watchlist atual
+- `/watch list`: lista os animes salvos na watchlist atual
+- `/watch clear`: limpa a watchlist atual
+- `/watch check`: mostra a agenda atual dos animes salvos
 
-Cada canal tem a sua propria watchlist. A DM com o bot tambem tem uma watchlist separada.
+Cada canal tem a propria watchlist. A DM com o bot tambem tem uma watchlist separada.
 
 ## Requisitos
 
@@ -51,15 +53,15 @@ DISCORD_POLL_MINUTES=15
 CR_BOOTSTRAP_MODE=mark_seen
 ```
 
-`CR_BOOTSTRAP_MODE=mark_seen` faz com que o bot nao notifique episodios antigos no primeiro arranque.
+`CR_BOOTSTRAP_MODE=mark_seen` evita notificar episodios antigos no primeiro arranque.
 
-4. Opcional: para os slash commands aparecerem mais rapido durante setup, define:
+4. Opcional: para os slash commands aparecerem mais rapido no setup, define:
 
 ```env
 DISCORD_COMMAND_GUILD_ID=123456789012345678
 ```
 
-Se deixares vazio, o sync e global e pode demorar mais.
+Se deixares vazio, o sync sera global e pode demorar mais.
 
 ## Criar o bot no Discord
 
@@ -107,19 +109,19 @@ Depois sobe:
 docker compose up -d --build
 ```
 
-Ver logs:
+Para ver os logs:
 
 ```bash
 docker compose logs -f
 ```
 
-Parar:
+Para parar:
 
 ```bash
 docker compose down
 ```
 
-Atualizar depois de mudares codigo:
+Para atualizar depois de mudar codigo:
 
 ```bash
 docker compose up -d --build
@@ -129,10 +131,10 @@ O estado do bot fica persistido em `./data` no host.
 
 Notas sobre o `docker-compose.yml` atual:
 
-- `network_mode: host`: evita os problemas de DNS que apareceram com o bridge padrão do Docker nesta VPS.
+- `network_mode: host`: evita os problemas de DNS que apareceram com o bridge padrao do Docker nesta VPS.
 - `user: "0:0"`: mantido porque essa VPS teve problema de leitura de resolucao DNS no container com usuario nao-root.
 
-Se mudares de VPS no futuro, podes testar remover essas duas opcoes e voltar para uma configuracao Docker mais padrao.
+Se no futuro voce trocar de VPS, vale testar remover essas duas opcoes e voltar para uma configuracao mais padrao.
 
 ## Deploy com systemd
 
@@ -165,7 +167,7 @@ sudo systemctl enable --now anime-watcher.service
 
 Se usares virtualenv, ajusta `ExecStart` em [deploy/anime-watcher.service](/C:/Users/Harttur/Documents/crunchyrool%20reader/deploy/anime-watcher.service).
 
-Ver logs:
+Para ver os logs:
 
 ```bash
 journalctl -u anime-watcher.service -n 100 --no-pager
@@ -175,7 +177,7 @@ journalctl -u anime-watcher.service -n 100 --no-pager
 
 - `anime_watcher_bot.py`: processo principal do bot
 - `anime_watcher_feed.py`: parser e utilitarios do feed legado
-- `anime_watcher_notifier.py`: modo legado one-shot por email/webhook
+- `anime_watcher_notifier.py`: modo legado de execucao unica por email/webhook
 - `requirements.txt`: dependencias Python
 - `Dockerfile`: imagem do bot
 - `docker-compose.yml`: stack Docker Compose
@@ -186,10 +188,10 @@ journalctl -u anime-watcher.service -n 100 --no-pager
 
 O bot guarda estado em `data/bot_state.json`.
 
-Cada contexto fica com:
+Cada contexto guarda:
 
 - watchlist propria
 - ultimo episodio observado por anime
 - ultimo episodio ja notificado
 
-Assim, o mesmo anime pode ser seguido em canais diferentes e tambem em DM sem misturar historico.
+Assim, o mesmo anime pode ser acompanhado em canais diferentes e tambem em DM sem misturar historico.
