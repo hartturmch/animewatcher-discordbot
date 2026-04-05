@@ -1,6 +1,6 @@
 # Anime Watcher
 
-![Anime Watcher banner](assets/anime-watcher-banner.png)
+![Anime Watcher banner](assets/anime-watcher-banner-readme.png)
 
 Bot de Discord para acompanhar lancamentos de anime via AniList e avisar quando sair episodio novo.
 
