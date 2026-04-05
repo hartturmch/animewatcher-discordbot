@@ -4,6 +4,19 @@
 
 Bot de Discord para acompanhar lancamentos de anime via AniList e avisar quando sair episodio novo.
 
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Discord Bot](https://img.shields.io/badge/Discord-Bot-5865F2?logo=discord&logoColor=white)](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
+[![Docker Ready](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![AniList](https://img.shields.io/badge/Data-AniList-02A9FF)](https://anilist.gitbook.io/anilist-apiv2-docs/)
+
+## Convide o bot
+
+Quer usar sem configurar nada?
+
+[Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
+
+Esse link abre a tela de autorizacao do Discord para voce escolher o servidor e adicionar o bot.
+
 ## Colocar no seu servidor
 
 [Adicionar o Anime Watcher ao seu servidor](https://discord.com/oauth2/authorize?client_id=1490000578871427212)
